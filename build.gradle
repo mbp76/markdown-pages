@@ -1,0 +1,114 @@
+defaultTasks "watch", "dependencies", "clean", "build", "test"
+
+def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less"]
+def path = System.getProperty("user.dir")
+def buildDir = "${path}/build"
+def srcDir = "${path}/src"
+def layout = "${srcDir}/template/layout-md.html"
+def metadata = "${srcDir}/template/metadata.yaml"
+
+task watch(type: Exec) {
+  inputs.dir srcDir
+  commandLine "true"
+
+  new ByteArrayOutputStream()
+}
+
+task dependencies() {
+  description "Installs all dependencies"
+
+  dependsOn {
+    tasks.findAll { task ->
+      task.name.startsWith("dependencies") && !task.name.equals("dependencies")
+    }
+  }
+}
+
+task dependenciesApt(type: Exec) {
+  description "Installs apt dependencies."
+  workingDir path
+  commandLine "apt-get"
+  args = ["install", "-y"] + aptPackages
+
+  new ByteArrayOutputStream()
+}
+
+task clean(type: Delete) {
+  description "Cleans build and temporary files."
+  delete "${buildDir}/*", "${buildDir}/assets"
+
+  dependsOn {
+    tasks.findAll { task ->
+      task.name.startsWith("clean") && !task.name.equals("clean")
+    }
+  }
+
+  doLast {
+    new File(buildDir).mkdir()
+  }
+}
+
+task build() {
+  description "Builds all sources into HTML pages."
+
+  dependsOn {
+    tasks.findAll { task ->
+      task.name.startsWith("build") && !task.name.equals("build")
+    }
+  }
+}
+
+fileTree(dir: srcDir, include: "**/*.md").each { File mdFile ->
+  def fileName = mdFile.getName().split("\\.")[0]
+  def htmlFile = "${buildDir}/${fileName}.html"
+  def fileCamelCase = fileName.split("-").collect{ it.capitalize() }.join()
+  def taskName = "build${fileCamelCase}"
+
+  task "${taskName}"(type: Exec) {
+    description "Builds ${mdFile.getName()} into an HTML page."
+    workingDir path
+    commandLine "pandoc"
+    args mdFile, metadata, "-s", "-o", htmlFile, "-t", "html5", "--template", layout, '--no-highlight'
+
+    new ByteArrayOutputStream()
+  }
+}
+
+task buildAssets(type: Copy) {
+  description "Builds the assets folder."
+  from "${srcDir}/assets"
+  into "${buildDir}/assets"
+}
+
+task buildStyles(type: Exec) {
+  description "Builds main CSS preprocessor file into plain CSS."
+  workingDir path
+  commandLine "lessc"
+  args "${srcDir}/style/main.less", "${buildDir}/style.css"
+
+  new ByteArrayOutputStream()
+}
+
+task test() {
+  description "Runs all test cases."
+
+  dependsOn {
+    tasks.findAll { task ->
+      task.name.startsWith("test") && !task.name.equals("test")
+    }
+  }
+}
+
+fileTree(dir: "${srcDir}/test", include: "**/*.groovy").each { File testFile ->
+  def fileName = testFile.getName().split("\\.")[0]
+  def taskName = "test${fileName}"
+
+  task "${taskName}"(type: Exec) {
+    description "Runs the ${fileName} case."
+    workingDir path
+    commandLine "groovy"
+    args "-cp", "/usr/share/java/spock-core.jar", testFile
+
+    new ByteArrayOutputStream()
+  }
+}
