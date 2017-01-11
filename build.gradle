@@ -4,7 +4,7 @@ def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less"]
 def path = System.getProperty("user.dir")
 def buildDir = "${path}/build"
 def srcDir = "${path}/src"
-def layout = "${srcDir}/template/layout-md.html"
+def layout = "${srcDir}/template/layout.html"
 def metadata = "${srcDir}/template/metadata.yaml"
 
 task watch(type: Exec) {
