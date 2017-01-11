@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$$if(dir)$ dir="$dir$"$endif$>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+$for(author-meta)$
+    <meta name="author" content="$author-meta$">
+$endfor$
+$if(keywords)$
+    <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
+$endif$
+$if(description)$
+    <meta name="description" content="$description$">
+$endif$
+    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+$for(css)$
+    <link rel="stylesheet" href="$css$">
+$endfor$
+$if(quotes)$
+    <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+    <style type="text/css">
+$highlighting-css$
+    </style>
+$endif$
+$if(math)$
+    $math$
+$endif$
+  </head>
+  <body>
+    <!-- Main layout -->
+    <div class="main-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+      <!-- Header -->
+      <header class="header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title mdl-color-text--grey-600">$title$</span>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link mdl-color-text--grey-600" href="">Foo</a>
+            <a class="mdl-navigation__link mdl-color-text--grey-600" href="">Bar</a>
+          </nav>
+        </div>
+      </header>
+      <!-- Background ribbon -->
+      <div class="bg-ribbon"></div>
+      <!-- Main section -->
+      <main class="main mdl-layout__content">
+        <!-- Main content -->
+        <div class="main-container mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="main-content mdl-color--white mdl-shadow--4dp mdl-cell mdl-cell--8-col">
+$body$
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer mdl-mini-footer">
+          <div class="mdl-mini-footer--left-section">
+            <ul class="mdl-mini-footer--link-list">
+              <li><a href="#">Foo</a></li>
+              <li><a href="#">Bar</a></li>
+              <li><a href="#">Baz</a></li>
+            </ul>
+          </div>
+          <div class="mdl-mini-footer--right-section">
+            <ul class="mdl-mini-footer--link-list">
+              <li><a href="#">Up ↑</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+    </div>
+$for(scripts)$
+    <script src="$scripts$"></script>
+$endfor$
+  </body>
+</html>
