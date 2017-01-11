@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.3.0 - 2017-01-11
+
+### Added
+
+  - Index page in Markdown format.
+  - Layout HTML template and metadata.
+  - Page assets and favicon.
+  - Main script and style sheet.
+
 ## 0.2.0 - 2017-01-10
 
 ### Added
