@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+### Removed
+
+  - Dockerfile in favour of external builder image.
+  - Dockerfile tests for the build environment.
+
+### Changed
+
+  - The docker-compose script using an external builder image.
+
 ## 0.5.0 - 2017-01-13
 
 ### Added
