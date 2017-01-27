@@ -2,6 +2,6 @@ version: '2'
 
 services:
   builder:
-    image: "marcbperez/docker-gradle"
+    build: .
     volumes:
       - .:/home/builder
