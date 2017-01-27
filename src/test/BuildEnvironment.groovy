@@ -6,11 +6,6 @@ class BuildEnvironmentSpec extends Specification {
       new File('build.gradle').exists()
   }
 
-  def "Dockerfile exists"() {
-    expect:
-      new File('Dockerfile').exists()
-  }
-
   def "docker-compose.yml exists"() {
     expect:
       new File('docker-compose.yml').exists()
