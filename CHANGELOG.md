@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.6.1 - 2017-01-27
+
+### Added
+
+  - Necessary Dockerfile for hub integration.
+  - Dockerfile build directory on docker-compose script.
+
 ## 0.6.0 - 2017-01-27
 
 ### Removed
