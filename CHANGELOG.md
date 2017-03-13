@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+### Added
+
+  - Gradle wrapper for this project.
+  - Dockerfile test case for the build environment.
+  - Dockerfile main command for the continuous build.
+  - Wrapper and serve tasks for the Gradle build script.
+
+### Changed
+
+  - README file with new usage instructions.
+
 ## 0.6.1 - 2017-01-27
 
 ### Added
