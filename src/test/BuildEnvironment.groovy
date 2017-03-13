@@ -10,4 +10,9 @@ class BuildEnvironmentSpec extends Specification {
     expect:
       new File('docker-compose.yml').exists()
   }
+
+  def "Dockerfile exists"() {
+    expect:
+      new File('Dockerfile').exists()
+  }
 }
