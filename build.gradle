@@ -1,4 +1,4 @@
-defaultTasks "watch", "dependencies", "clean", "build", "test"
+defaultTasks "wrapper", "watch", "dependencies", "clean", "build", "test"
 
 def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less"]
 def path = System.getProperty("user.dir")
@@ -7,7 +7,13 @@ def srcDir = "${path}/src"
 def layout = "${srcDir}/template/layout.html"
 def metadata = "${srcDir}/template/metadata.yaml"
 
+task wrapper(type: Wrapper) {
+  description "Creates the project wrapper."
+  gradleVersion = '3.4.1'
+}
+
 task watch(type: Exec) {
+  description "Watches for changes."
   inputs.dir srcDir
   commandLine "true"
 
@@ -15,7 +21,7 @@ task watch(type: Exec) {
 }
 
 task dependencies() {
-  description "Installs all dependencies"
+  description "Installs all dependencies."
 
   dependsOn {
     tasks.findAll { task ->
@@ -35,7 +41,7 @@ task dependenciesApt(type: Exec) {
 
 task clean(type: Delete) {
   description "Cleans build and temporary files."
-  delete "${buildDir}/*", "${buildDir}/assets"
+  delete "${buildDir}"
 
   dependsOn {
     tasks.findAll { task ->
@@ -68,7 +74,8 @@ fileTree(dir: srcDir, include: "**/*.md").each { File mdFile ->
     description "Builds ${mdFile.getName()} into an HTML page."
     workingDir path
     commandLine "pandoc"
-    args mdFile, metadata, "-s", "-o", htmlFile, "-t", "html5", "--template", layout, '--no-highlight'
+    args mdFile, metadata, "-s", "-o", htmlFile, "-t", "html5", "--template",
+      layout, '--no-highlight'
 
     new ByteArrayOutputStream()
   }
@@ -111,4 +118,13 @@ fileTree(dir: "${srcDir}/test", include: "**/*.groovy").each { File testFile ->
 
     new ByteArrayOutputStream()
   }
+}
+
+task serve(type: Exec) {
+  description "Serves the project on a development server."
+  workingDir buildDir
+  commandLine "python"
+  args "-m", "SimpleHTTPServer", "8000"
+
+  new ByteArrayOutputStream()
 }

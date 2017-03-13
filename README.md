@@ -1,50 +1,53 @@
 # markdown-pages
 
-Static page generator with Markdown support.
+Static page generator with Markdown support. Includes with Material Design, Less
+CSS pre-processor and code highlighting.
 
 ## Installation
 
-This projects uses Gradle (at least version 3.3) as its build system along with
-a Docker and docker-compose wrapper for continuous development. On Debian Linux
-distributions Gradle can be installed with the following commands:
-
-```bash
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:cwchien/gradle
-sudo apt-get update
-sudo apt-get install default-jdk gradle=3.4-0ubuntu1
-```
-
-If you prefer to install Docker and docker-compose (highly recommended) refer to
-the [official instructions][install-docker-compose].
-
-## Usage
-
-The build will create HTML pages for all Markdown documents. To see the results
-open `build/index.html` on a browser after running the main Gradle task.
+Start by downloading the project and building the sources. The following
+commands will do the task on most Debian based Linux distributions.
 
 ```bash
 git clone https://github.com/marcbperez/markdown-pages
 cd markdown-pages
-sudo -H gradle
+sudo ./gradlew
+```
+
+## Usage
+
+After the installation process the contents will be generated inside the `build`
+folder. Run the `serve` visit http://localhost:8000 to browse the project pages,
+it is equivalent to running Python's SimpleHTTPServer.
+
+```bash
+sudo ./gradlew serve
 ```
 
 ## Testing
 
-Tests will be executed by default every time the project is built. To run them
-manually start a new build or use Gradle's test task. For a complete list of
-tasks check `gradle tasks --all`.
+Test checks are executed automatically every time the project is built. Builds
+can be done remotely or continuously on a development context. For continuous
+integration and development use docker-compose. This is recommended to keep the
+system clean while the project is built every time the sources change.
 
 ```bash
-gradle test
-```
-
-A continuous build cycle can be executed with `gradle --continuous` inside a
-virtual environment, or with Docker.
-
-```
 sudo docker-compose up
 ```
+
+For continuous integration and development without any dependencies use the
+Gradle wrapper. This is the best option if the wrapper is available and the
+Docker context is not valid. For a full list of tasks, see
+`sudo ./gradlew tasks --all`. For a CI cycle use `sudo ./gradlew --continuous`.
+
+For continuous integration and development without Docker or the project wrapper
+use Gradle directly. This will create the wrapper in case it is not present.
+Similar to the above, for a CI cycle use `sudo gradle --continuous`. Gradle
+3.4.1 is required for this to work. Plain Docker is also available for remote
+integration tasks and alike. Build the image with `sudo docker build .` and run
+a new container with it. Information on how to install Docker and docker-compose
+can be found in their [official page][install-docker-compose]. A similar
+installation guide is available [for Gradle][install-gradle].
 
 ## Troubleshooting
 
@@ -81,3 +84,4 @@ This project is licensed under the [Apache License Version 2.0][license].
 [license]: LICENSE
 [semver]: http://semver.org
 [install-docker-compose]: https://docs.docker.com/compose/install/
+[install-gradle]: https://gradle.org/install
