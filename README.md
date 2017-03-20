@@ -5,8 +5,8 @@ CSS pre-processor and code highlighting.
 
 ## Installation
 
-Start by downloading the project and building the sources. The following
-commands will do the task on most Debian based Linux distributions.
+Start by downloading and building the project when necessary. The following
+commands will do the job on most Debian based Linux distributions.
 
 ```bash
 git clone https://github.com/marcbperez/markdown-pages

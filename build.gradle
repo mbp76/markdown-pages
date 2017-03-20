@@ -2,19 +2,20 @@ defaultTasks "wrapper", "watch", "dependencies", "clean", "build", "test"
 
 def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less"]
 def path = System.getProperty("user.dir")
-def buildDir = "${path}/build"
 def srcDir = "${path}/src"
+def testDir = "${path}/test"
+def buildDir = "${path}/build"
 def layout = "${srcDir}/template/layout.html"
 def metadata = "${srcDir}/template/metadata.yaml"
 
 task wrapper(type: Wrapper) {
   description "Creates the project wrapper."
-  gradleVersion = '3.4.1'
+  gradleVersion = "3.4.1"
 }
 
 task watch(type: Exec) {
   description "Watches for changes."
-  inputs.dir srcDir
+  inputs.files(srcDir, testDir)
   commandLine "true"
 
   new ByteArrayOutputStream()
@@ -30,8 +31,17 @@ task dependencies() {
   }
 }
 
-task dependenciesApt(type: Exec) {
-  description "Installs apt dependencies."
+task aptUpdate(type: Exec) {
+  description "Updates APT repository information."
+  workingDir path
+  commandLine "apt-get"
+  args "update"
+
+  new ByteArrayOutputStream()
+}
+
+task dependenciesApt(type: Exec, dependsOn: aptUpdate) {
+  description "Installs APT dependencies."
   workingDir path
   commandLine "apt-get"
   args = ["install", "-y"] + aptPackages
@@ -55,7 +65,7 @@ task clean(type: Delete) {
 }
 
 task build() {
-  description "Builds all sources into HTML pages."
+  description "Builds all project sources."
 
   dependsOn {
     tasks.findAll { task ->
@@ -68,14 +78,13 @@ fileTree(dir: srcDir, include: "**/*.md").each { File mdFile ->
   def fileName = mdFile.getName().split("\\.")[0]
   def htmlFile = "${buildDir}/${fileName}.html"
   def fileCamelCase = fileName.split("-").collect{ it.capitalize() }.join()
-  def taskName = "build${fileCamelCase}"
 
-  task "${taskName}"(type: Exec) {
+  task "build${fileCamelCase}"(type: Exec) {
     description "Builds ${mdFile.getName()} into an HTML page."
     workingDir path
     commandLine "pandoc"
     args mdFile, metadata, "-s", "-o", htmlFile, "-t", "html5", "--template",
-      layout, '--no-highlight'
+      layout, "--no-highlight"
 
     new ByteArrayOutputStream()
   }
@@ -106,11 +115,10 @@ task test() {
   }
 }
 
-fileTree(dir: "${srcDir}/test", include: "**/*.groovy").each { File testFile ->
+fileTree(dir: "${testDir}", include: "**/*.groovy").each { File testFile ->
   def fileName = testFile.getName().split("\\.")[0]
-  def taskName = "test${fileName}"
 
-  task "${taskName}"(type: Exec) {
+  task "test${fileName}"(type: Exec) {
     description "Runs the ${fileName} case."
     workingDir path
     commandLine "groovy"
