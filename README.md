@@ -17,8 +17,8 @@ sudo ./gradlew
 ## Usage
 
 After the installation process the contents will be generated inside the `build`
-folder. Run the `serve` visit http://localhost:8000 to browse the project pages,
-it is equivalent to running Python's SimpleHTTPServer.
+folder. Run the `serve` task and visit http://localhost:8000 to browse the
+project pages, it is equivalent to running Python's SimpleHTTPServer.
 
 ```bash
 sudo ./gradlew serve
