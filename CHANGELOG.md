@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.8.0 - 2017-04-18
+
+### Changed
+
+  - Build folder to docs.
+  - Ignored new build folder.
+  - Gradle wrapper for this project.
+  - Project usage and instructions.
+
 ## 0.7.2 - 2017-03-25
 
 ### Fixed
