@@ -16,7 +16,7 @@ sudo ./gradlew
 
 ## Usage
 
-After the installation process the contents will be generated inside the `build`
+After the installation process the contents will be generated inside the `docs`
 folder. Run the `serve` task and visit http://localhost:8000 to browse the
 project pages, it is equivalent to running Python's SimpleHTTPServer.
 
