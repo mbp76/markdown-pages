@@ -1,6 +1,8 @@
-defaultTasks "wrapper", "watch", "dependencies", "clean", "build", "test"
+defaultTasks "wrapper", "watch", "dependencies", "clean", "build", "test",
+  "serve"
 
-def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less"]
+def aptPackages = ["libspock-java", "pandoc", "node-request", "node-less",
+  "python-pip"]
 def path = System.getProperty("user.dir")
 def srcDir = "${path}/src"
 def testDir = "${path}/test"
@@ -135,11 +137,18 @@ fileTree(dir: "${testDir}", include: "**/*.groovy").each { File testFile ->
   }
 }
 
-task serve(type: Exec) {
-  description "Serves the project on a development server."
-  workingDir buildDir
-  commandLine "python"
-  args "-m", "SimpleHTTPServer", "8000"
+task serve() {
+  description "Serves the project from a development web server."
 
-  new ByteArrayOutputStream()
+  def command = "python -m SimpleHTTPServer 8000"
+  def builder = new ProcessBuilder(command.split(" ")).directory(new File(path))
+  def process = null
+
+  doFirst {
+    if (process != null) process.destroy()
+  }
+
+  doLast {
+    process = builder.start()
+  }
 }
