@@ -12,4 +12,5 @@ scripts:
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-python.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js
   - assets/script.js
+analytics-id: UA-XXXXXXXX-Y
 ...
