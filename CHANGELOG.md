@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## 0.8.1 - 2017-05-12
+
+### Fixed
+
+  - Build script with background serve task.
+  - Build information and erratas in README usage.
+  - Google Analytics tracking code in main template.
+
 ## 0.8.0 - 2017-04-18
 
 ### Changed
