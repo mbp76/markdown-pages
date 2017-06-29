@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. This
 project adheres to [Semantic Versioning](http://semver.org).
 
+## Unreleased
+
+## 0.8.2 - 2017-06-29
+
+### Fixed
+
+  - Erratas on README description and project usage.
+  - Scripts, style and template.
+
 ## 0.8.1 - 2017-05-12
 
 ### Fixed
