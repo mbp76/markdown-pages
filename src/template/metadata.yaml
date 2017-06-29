@@ -1,16 +1,21 @@
 ---
+lang: en
 title: markdown-pages
-author-meta: marcbperez
 description: Static page generator with Markdown support.
-keywords:
-  - markdown-pages marcbperez
-css:
+analytics-id: UA-XXXXXXXX-Y
+author-meta:
+  - Mbp76
+keyword:
+  - markdown-pages
+style:
   - style.css
-scripts:
+script:
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-bash.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-python.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-markdown.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-markup.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js
   - assets/script.js
-analytics-id: UA-XXXXXXXX-Y
+  - assets/analytics.js
 ...

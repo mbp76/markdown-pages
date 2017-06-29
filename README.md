@@ -18,8 +18,8 @@ sudo ./gradlew
 
 After the installation process the contents will be generated inside the `docs`
 folder. Visit http://localhost:8000/docs to browse the project pages, it is
-equivalent to running Python's SimpleHTTPServer. Changes made will be
-automatically applied.
+equivalent to running Python's SimpleHTTPServer. Changes made will be applied
+automatically .
 
 ## Testing
 
