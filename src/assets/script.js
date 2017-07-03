@@ -30,6 +30,8 @@ $(document).ready(function() {
     $("body").toggleClass(lightClass).toggleClass(darkClass).hasClass(darkClass)
       ? $("#prism-css").attr("href", prismCdn + "/" + prismDark)
       : $("#prism-css").attr("href", prismCdn + "/" + prismLight);
+    $("body").hasClass(darkClass)
+      ? $(".toggle-theme").text("Lighten") : $(".toggle-theme").text("Darken");
   });
 
   $("#prism-css").attr("href", prismCdn + "/" + prismLight);
