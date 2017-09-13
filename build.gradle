@@ -7,8 +7,6 @@ def path = System.getProperty("user.dir")
 def srcDir = "${path}/src"
 def testDir = "${path}/test"
 def buildDir = "${path}/docs"
-def layout = "${srcDir}/template/layout.html"
-def metadata = "${srcDir}/template/metadata.yaml"
 
 task wrapper(type: Wrapper) {
   description "Creates the project wrapper."
@@ -78,8 +76,14 @@ task build() {
 
 fileTree(dir: srcDir, include: "**/*.md").each { File mdFile ->
   def fileName = mdFile.getName().split("\\.")[0]
-  def htmlFile = "${buildDir}/${fileName}.html"
   def fileCamelCase = fileName.split("-").collect{ it.capitalize() }.join()
+  def htmlFile = "${buildDir}/${fileName}.html"
+  def layout = file("${srcDir}/template/${fileName}.html").exists() ?
+    "${srcDir}/template/${fileName}.html" :
+    "${srcDir}/template/default.html"
+  def metadata = file("${srcDir}/metadata/${fileName}.yaml").exists() ?
+    "${srcDir}/metadata/${fileName}.yaml" :
+    "${srcDir}/metadata/default.yaml"
 
   task "build${fileCamelCase}"(type: Exec) {
     description "Builds ${mdFile.getName()} into an HTML page."
@@ -140,11 +144,13 @@ fileTree(dir: "${testDir}", include: "**/*.groovy").each { File testFile ->
 task serve() {
   description "Serves the project from a development web server."
 
-  def command = "python -m SimpleHTTPServer 8000"
+  def port = 8000
+  def command = "python -m SimpleHTTPServer ${port}"
   def builder = new ProcessBuilder(command.split(" ")).directory(new File(path))
   def process = null
 
   doFirst {
+    println "Serving on port ${port}."
     if (process != null) process.destroy()
   }
 
