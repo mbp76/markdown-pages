@@ -5,6 +5,14 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+### Added
+
+  - Dynamic template and metadata in build script.
+  - Default metadata in its own folder.
+  - Default template.
+  - Style for dark HR elements.
+  - Gradle wrapper for this project.
+
 ## 0.8.3 - 2017-07-03
 
 ### Fixed
