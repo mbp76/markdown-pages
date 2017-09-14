@@ -5,6 +5,8 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.9.0 - 2017-09-14
+
 ### Added
 
   - Dynamic template and metadata in build script.
