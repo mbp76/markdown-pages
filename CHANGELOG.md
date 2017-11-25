@@ -5,6 +5,13 @@ project adheres to [Semantic Versioning](http://semver.org).
 
 ## Unreleased
 
+## 0.9.1 - 2017-11-25
+
+### Fixed
+
+  - Unnecessary JavaScript dependencies and template issues.
+  - Project author's name.
+
 ## 0.9.0 - 2017-09-14
 
 ### Added
