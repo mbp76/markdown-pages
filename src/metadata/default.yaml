@@ -4,7 +4,7 @@ title: markdown-pages
 description: Static page generator with Markdown support.
 analytics-id: UA-XXXXXXXX-Y
 author-meta:
-  - Mbp76
+  - marcbperez
 keyword:
   - markdown-pages
 style:
@@ -15,7 +15,6 @@ script:
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-python.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-markdown.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-markup.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js
   - https://code.getmdl.io/1.3.0/material.min.js
   - assets/script.js
   - assets/analytics.js
