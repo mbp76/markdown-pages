@@ -1,7 +1,7 @@
 # markdown-pages
 
-Static page generator with Markdown support. Includes with Material Design, Less
-CSS pre-processor and code highlighting.
+Static page generator with Markdown support. Includes Material Design, Less CSS
+pre-processor, code highlighting and Google Analytics.
 
 ## Installation
 
@@ -17,12 +17,9 @@ sudo ./gradlew
 ## Usage
 
 After the installation process the contents will be generated inside the `docs`
-folder. Run the `serve` task and visit http://localhost:8000 to browse the
-project pages, it is equivalent to running Python's SimpleHTTPServer.
-
-```bash
-sudo ./gradlew serve
-```
+folder. Visit http://localhost:8000/docs to browse the project pages, it is
+equivalent to running Python's SimpleHTTPServer. Changes made will be
+automatically applied.
 
 ## Testing
 
